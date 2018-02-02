@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VER=${1:-"2.0.6"}
+VER=${1:-"2.5.17"}
 
 TMPDEST="./temp"
 JNIDIR="./src/main/jniLibs"
@@ -20,7 +20,7 @@ do
     rm -rf "$TMPDEST"/*
 done
 
-SOURCE_CODE_URL="ftp://ftp.videolan.org/pub/videolan/vlc-android/$VER/VLC-Android-$VER.tar.gz"
+SOURCE_CODE_URL="ftp://ftp.videolan.org/pub/videolan/vlc-android/$VER/VLC-Android-sources-$VER.tar.gz"
 DESTFILE="$TMPDEST/$(basename $SOURCE_CODE_URL)"
 curl -s "$SOURCE_CODE_URL" -o "$DESTFILE"
 tar -xvf "$DESTFILE" --directory "$TMPDEST"
