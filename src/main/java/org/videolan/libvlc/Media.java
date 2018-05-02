@@ -417,6 +417,9 @@ public class Media extends VLCObject<Media.Event> {
     private int mState = -1;
     private int mType = -1;
     private boolean mCodecOptionSet = false;
+    private boolean mFileCachingSet = false;
+    private boolean mNetworkCachingSet = false;
+
 
     /**
      * Create a Media from libVLC and a local path starting with '/'.
@@ -757,8 +760,10 @@ public class Media extends VLCObject<Media.Event> {
          * for 320x170 H.264, a few packets less on higher resolutions.
          * On Nexus S, the decoder latency seems to be about 7 packets.
          */
-        addOption(":file-caching=1500");
-        addOption(":network-caching=1500");
+        if (!mFileCachingSet)
+            addOption(":file-caching=1500");
+        if (!mNetworkCachingSet)
+            addOption(":network-caching=1500");
 
         final StringBuilder sb = new StringBuilder(":codec=");
         if (decoder == HWDecoderUtil.Decoder.MEDIACODEC || decoder == HWDecoderUtil.Decoder.ALL)
@@ -781,6 +786,11 @@ public class Media extends VLCObject<Media.Event> {
         }
         if (!codecOptionSet)
             setHWDecoderEnabled(true, false);
+
+        /* dvdnav need to be explicitly forced for network playbacks */
+        if (mUri != null && mUri.getScheme() != null && !mUri.getScheme().equalsIgnoreCase("file") &&
+                mUri.getLastPathSegment() != null && mUri.getLastPathSegment().toLowerCase().endsWith(".iso"))
+            addOption(":demux=dvdnav,any");
     }
 
     /**
@@ -792,6 +802,10 @@ public class Media extends VLCObject<Media.Event> {
         synchronized (this) {
             if (!mCodecOptionSet && option.startsWith(":codec="))
                 mCodecOptionSet = true;
+            if (!mNetworkCachingSet && option.startsWith(":network-caching="))
+                mNetworkCachingSet = true;
+            if (!mFileCachingSet && option.startsWith(":file-caching="))
+                mFileCachingSet = true;
         }
         nativeAddOption(option);
     }
