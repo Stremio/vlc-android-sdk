@@ -1,5 +1,10 @@
 sudo: required
 
+addons:
+  apt:
+    packages:
+      - docker-ce
+
 env:
   DOCKER_COMPOSE_VERSION: "1.24.1"
   VLC_ANDROID_VERSION: "3.1.6"
@@ -8,8 +13,8 @@ before_install:
   - echo "whoami:"
   - whoami
   - ./install-docker.sh
-  - which docker-compose
-  - docker-compose --version
+  - which docker
+  - docker --version
 
 install:
   - docker build -t stremio/vlc-android-sdk --build-arg VLC_ANDROID_TAG=$VLC_ANDROID_TAG .
