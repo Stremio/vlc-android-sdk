@@ -1,0 +1,20 @@
+sudo: required
+
+env:
+  global:
+  - VLC_ANDROID_TAG=3.1.6
+
+services:
+  - docker
+
+install:
+  - docker build -t stremio/vlc-android-sdk --build-arg VLC_ANDROID_TAG=$VLC_ANDROID_TAG .
+
+script:
+  - docker run -it stremio/vlc-android-sdk /bin/bash
+  - cd ~
+  - git clone "https://code.videolan.org/videolan/vlc-android.git" -b "$VLC_ANDROID_TAG" "vlc-android"
+  - cd vlc-android
+  - sh compile.sh --init
+  - sed -i -e "s/4.10.1/5.4.1/g" "gradle/wrapper/gradle-wrapper.properties"
+  - ./gradlew wrapper
