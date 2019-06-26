@@ -4,7 +4,7 @@ env:
   VLC_ANDROID_TAG: "3.1.6"
 
 install:
-  - install-docker.sh
+  - ./install-docker.sh
   - docker build -t stremio/vlc-android-sdk --build-arg VLC_ANDROID_TAG=$VLC_ANDROID_TAG .
 
 script:
