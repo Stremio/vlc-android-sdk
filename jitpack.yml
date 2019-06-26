@@ -5,6 +5,8 @@ env:
   VLC_ANDROID_VERSION: "3.1.6"
 
 before_install:
+  - echo "whoami:"
+  - whoami
   - ./install-docker.sh
   - which docker-compose
   - docker-compose --version
