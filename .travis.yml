@@ -1,21 +1,13 @@
 sudo: required
-
 env:
   global:
   - VLC_ANDROID_TAG=3.1.6
-
 services:
 - docker
-
 script:
-- echo "testcontent a" > ./testfilea.dummy
-- echo "testcontent b" > ./testfileb.dummy
-
+- echo "testcontent" > ./tt
 deploy:
   provider: releases
   api_key:
-    secure: fFrSRuYV7eh3leJVO8EqvxkQk1stfUJ3uO51lVESGpvsMFNbHOy4EqR/3xGICoQkefZg1CjkE6z1Xft/G5XDF57WJu0V27w8ezu5sA88prc8ZejQr/3m6Xj2sC1M6HwDIffIP3Hc2n7wLWlzF2GFgijP4K7Z9Jcd3TOwSuXyrW1S/JnIxvozB+Mb3cmxbNWCHy6DQgIn5TeFLQgFjraUEHU8ChERYcOc2CwOWl6cVj1qnG5M//oR+PRdMPsf/UlOJaVAdNgZLskxoJJ7S3MEbn9QM6A/uQJfTeNMUPnV95/vaKL/5U53kksKaoJX7ajNCR3AeASbOSq/IQfm3nH4lcDWRI7a/asNvLDxzCq1/vJ73C5RPXYUT7vZmptpdU5o9TEZ7CGd/v18DMOjYKDyEDNBmBXQUJ0j4VFqi4dncnzsWiqOPL1yMiyWezaKlnnrz0+XpXnkTry5eFKruB0MGZGOvR7HlzXU/BkMKjk3ToqfysIzTOUt75hzz5lqmryxx2hhk895YZ3hC5cclv/wrSGXtaMGe5dao5QaZFO8CWW4VBiHfCgZUUoroT/C7oFnoGmp+8mVGGGCZNUUWzKJ0evIP8UQHU74locw/GT6v7cL5p/uBrDz4PpBgPBxs57iEA881wQXDRp0PhD29yg5SuT522jvVLMkq8LrI2CPTsM=
-  file_glob: true
-  file: "./*.dummy"
-  on:
-    tags: true
+    secure: rBfAcLRZ+IAck4XPQVw/7hxbKesqEQzeJrpd3bDX912/RkdgzDtSmMQcFPaV6yZq9FDv2y5pa+S7IkGV7wxDCk/T9oMX+LKRZP3BVRpRea2GAOVIn7dsdfbnzGLZi9Mb11EoKY+6AqhwJWKsGouUmPlJECbICFGxmDC9OoOiUpeY+n4JoeoaQERasxIwKmAAV0IajzusJ2g+0GbxBSEX5wsyr3XbvOYM+fBTsJg8CExSAcXvRXawnCiEnLDvcYH36ENc4/njPoolNruMCVYlb3d8weftPoW/JcZIblXBUwLYVzS8Xu2yZAZyH11U4XiVjghPKvBUcCtMelrd0UngD+By40Sh+w6oxgydxmMLxcveLRwItt6bW/mXFY0eJAizCqLxgS6gBgzw48pvpVF0zCINckbNPfeFc5AAh4IY+SJm4Pe9PRqqtckG+RUSBSgo+rtmq9yMsxvhr2Wh09xXg745lvUI8hsGNOf1AQ5AdwRG0OQ3eCh6BFUq57fhXP9lPEjVANbI21fbUpHoUOMsl0/QUyjhdEXe83niBQhyUUP7DyZ0Iaj9iuCO7ibdX8P2abR3KLOXCwNSUywuaHJ7wlQVfhpzYBGTCuet0M8A1zpqMtbyxFgTNcIt2js8knPlDMeA5xJvLp6ZOeXNIdf2YcFZhEoHY8Z1c0sn7IabN18=
+  file: tt
