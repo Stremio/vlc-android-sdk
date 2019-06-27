@@ -11,8 +11,8 @@ services:
 
 script:
   - docker build -t $DOCKER_CONTAINER_NAME .
-  - docker run -it $DOCKER_CONTAINER_NAME $VLC_ANDROID_VERSION $LIBVLC_ARCHITECTURES
-  - DOCKER_CONTAINER_ID=`docker ps -a | grep $DOCKER_CONTAINER_NAME | awk '{ print $1 }'`
+  - docker run -it $DOCKER_CONTAINER_NAME ls
+  - DOCKER_CONTAINER_ID=`docker ps -a | grep $DOCKER_CONTAINER_NAME | awk 'NR==1{ print $1 }'`
   - docker cp $DOCKER_CONTAINER_ID:/tt ./tt
 
 deploy:
