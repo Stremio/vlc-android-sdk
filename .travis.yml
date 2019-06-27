@@ -7,14 +7,15 @@ env:
 services:
   - docker
 
-install:
-  - docker build -t stremio/vlc-android-sdk --build-arg VLC_ANDROID_TAG=$VLC_ANDROID_TAG .
-
 script:
-  - docker run -it stremio/vlc-android-sdk /bin/bash
-  - cd ~
-  - git clone "https://code.videolan.org/videolan/vlc-android.git" -b "$VLC_ANDROID_TAG" "vlc-android"
-  - cd vlc-android
-  - sh compile.sh --init
-  - sed -i -e "s/4.10.1/5.4.1/g" "gradle/wrapper/gradle-wrapper.properties"
-  - ./gradlew wrapper
+  - echo "testcontent a" > ./testfilea.dummy
+  - echo "testcontent b" > ./testfileb.dummy
+
+deploy:
+  provider: releases
+  api_key:
+    secure: bw0/+Xy/qS7cH3fimcxOOoeB45Q+pE2osej1HpE9JMXv2JiAbxTBvWtb+5ZCIat4XWL9E14/1UeQUMg10DG0YghmoiebXBU7Px/IjBqaannbw8qeNiJCQAsj4+GbjqQ4LmB4oqff2c2w3TBVnNqif5Ji39dG3Pi6uJ0j6oW7xzqYVLoOjzcdihIBVRWfAIUOZtYGpb+eCy5MEcfVkCx3ilb+PvWKqDwvNk/tZ9Pez+LxkxdJb/f3CPrj8dIoKKccY/BUnV2dXRUsggkkBzyvnZPr55t6GcY24yNF2V+oeK9lvogBg0c+39NJaCXoZ4PSxTt0pMslfXKu5HBipHImgRagIWmO775cZIktxoldQUbPNHEbMqKfdMdQQk8/WImLa56sknUHUOSCdhs0fCeZgopZK0879Z1Nbfy9QJ7I9We5RLw1pG0CvtTwMxHACfm0A5q+XarwOKFhS48WnMOaDBGBojbKZDe+fyy2Bq8X4nDv2sr/mkCCm3s7/SGxr7ZFwsNbmQFagpxgmO8n0VaNV+uV7+aRAqxdypcde34kbfD8VBme7UeSq7LwsnBr2qMkezyziC31R+whGq9l+NiOy3yQFEMVXh85h/Pi5+fiMSCVe5L0FGtO8eBXi9loVjdqlwi5gWaJ2m9vjtwCHw0+LiiqDyTXlzW7hgSqOfazPnE=
+  file_glob: true
+  file: ./*.dummy
+  on:
+    tags: true
