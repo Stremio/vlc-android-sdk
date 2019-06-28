@@ -1,16 +1,15 @@
 sudo: required
 
-env:
-  global:
-  - DOCKER_CONTAINER_NAME="stremio/vlc-android-sdk"
-  - VLC_ANDROID_VERSION="3.1.6"
-
 services:
   - docker
 
+env:
+  global:
+  - DOCKER_CONTAINER_NAME="stremio/vlc-android-sdk"
+
 script:
   - docker build -t $DOCKER_CONTAINER_NAME .
-  - docker run -it $DOCKER_CONTAINER_NAME $VLC_ANDROID_VERSION
+  - docker run -it $DOCKER_CONTAINER_NAME
   - DOCKER_CONTAINER_ID=`docker ps -a | grep $DOCKER_CONTAINER_NAME | awk 'NR==1{ print $1 }'`
   - docker cp $DOCKER_CONTAINER_ID:/tt ./tt
 
