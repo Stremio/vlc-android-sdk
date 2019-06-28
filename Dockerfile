@@ -9,7 +9,7 @@ RUN apt-get update && \
     openjdk-8-jdk-headless ca-certificates autoconf m4 automake ant autopoint bison \
     flex build-essential libtool libtool-bin patch pkg-config ragel subversion \
     git rpm2cpio libwebkitgtk-1.0-0 yasm ragel g++ protobuf-compiler gettext \
-    libgsm1-dev wget expect unzip python python3 locales libltdl-dev && \
+    libgsm1-dev wget expect unzip zip python python3 locales libltdl-dev && \
     echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backports.list && \
     apt-get update && apt-get -y -t stretch-backports install cmake && \
     rm -f /etc/apt/sources.list.d/stretch-backports.list && \
@@ -18,22 +18,22 @@ RUN apt-get update && \
     rm -f /etc/apt/sources.list.d/testing.list && \
     apt-get clean -y && rm -rf /var/lib/apt/lists/* && \
     localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
-    addgroup --quiet "$USERNAME" && \
-    adduser --quiet --disabled-password -gecos "" --ingroup "$USERNAME" "$USERNAME" && \
+    addgroup --quiet $USERNAME && \
+    adduser --quiet --disabled-password -gecos "" --ingroup $USERNAME $USERNAME && \
     echo "$USERNAME:$USERNAME" | chpasswd
 
 USER $USERNAME
-RUN mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
-    mkdir "licenses" && \
+RUN mkdir -p $ANDROID_SDK && cd $ANDROID_SDK && \
+    mkdir licenses && \
     echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "licenses/android-sdk-license" && \
     echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "licenses/android-sdk-license" && \
-    wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
+    wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
     SDK_TOOLS_SHA256=444e22ce8ca0f67353bda4b85175ed3731cae3ffa695ca18119cbacef1c1bea0 && \
     echo $SDK_TOOLS_SHA256 sdk-tools-linux-3859397.zip | sha256sum -c && \
     unzip sdk-tools-linux-3859397.zip && \
     rm -f sdk-tools-linux-3859397.zip && \
     tools/bin/sdkmanager "build-tools;26.0.1" "platform-tools" "platforms;android-26" && \
-    mkdir -p "$ANDROID_NDK" && cd "$ANDROID_NDK" && \
+    mkdir -p $ANDROID_NDK && cd $ANDROID_NDK && \
     wget -q https://dl.google.com/android/repository/android-ndk-r18b-linux-x86_64.zip && \
     ANDROID_NDK_SHA256=4f61cbe4bbf6406aa5ef2ae871def78010eed6271af72de83f8bd0b07a9fd3fd && \
     echo $ANDROID_NDK_SHA256 android-ndk-r18b-linux-x86_64.zip | sha256sum -c && \
@@ -44,5 +44,5 @@ RUN mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
     git config --global user.name $USERNAME && \
     git config --global user.email $USERNAME@stremio.com
 
-COPY ./libvlc-android.sh ~/libvlc-android.sh
-ENTRYPOINT ["sh", "~/libvlc-android.sh"]
+COPY ./libvlc-android.sh /home/$USERNAME/
+ENTRYPOINT ["sh", "libvlc-android.sh"]
