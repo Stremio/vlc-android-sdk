@@ -2,6 +2,7 @@
 
 cd $HOME
 
+ARCHITECTURE=$1
 OUTPUT_DIR="$HOME/libvlc"
 SOURCE_DIR="$OUTPUT_DIR/src/main"
 JAVA_DIR="$SOURCE_DIR/java"
@@ -17,9 +18,7 @@ cd vlc-android
 sh compile.sh --init
 sed -i -e "s/4.10.1/5.4.1/g" gradle/wrapper/gradle-wrapper.properties
 ./gradlew wrapper
-for ARCH in armeabi-v7a arm64-v8a x86 x86_64; do
-    sh compile.sh -a $ARCH -l --release --no-ml
-done
+sh compile.sh -a $ARCHITECTURE -l --release --no-ml
 
 for filename in libvlc/build/outputs/aar/*.aar; do
     unzip $filename jni/* -d $JNILIBS_DIR
