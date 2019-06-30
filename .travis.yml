@@ -9,7 +9,9 @@ env:
 
 script:
   - docker build -t $DOCKER_CONTAINER_NAME .
+  - while sleep 1m; do echo "[$SECONDS seconds] building"; done &
   - docker run -it $DOCKER_CONTAINER_NAME armeabi-v7a >/dev/null 2>/dev/null
+  - kill %1
   - DOCKER_CONTAINER_ID=`docker ps -a | grep $DOCKER_CONTAINER_NAME | awk 'NR==1{ print $1 }'`
   - docker cp $DOCKER_CONTAINER_ID:/home/stremioci/libvlc-source.zip ./libvlc-source.zip
 
