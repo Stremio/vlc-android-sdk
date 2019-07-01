@@ -9,6 +9,8 @@ env:
   - DOCKER_CONTAINER_NAME="stremio/vlc-android-sdk"
 
 script:
+  - echo $TRAVIS_TAG
+  - echo $TRAVIS_TAG | sed -rn 's/^.*-([^-]+)$/\1/p'
   - echo $ARCHITECTURE
   - echo $ARCHITECTURE$ARCHITECTURE > ./$ARCHITECTURE
   # - docker build -t $DOCKER_CONTAINER_NAME .
