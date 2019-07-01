@@ -1,4 +1,5 @@
-for ARCHITECTURE in armeabi-v7a arm64-v8a x86_64 x86
+# arm64-v8a x86_64 x86
+for ARCHITECTURE in armeabi-v7a
 do
     wget https://github.com/Stremio/vlc-android-sdk/releases/download/$VERSION-$ARCHITECTURE/libvlc-$ARCHITECTURE.zip
     unzip libvlc-$ARCHITECTURE.zip
