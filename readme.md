@@ -1,1 +1,0 @@
-https://jitpack.io/#org.bitbucket.Stremio/vlc-android-sdk
