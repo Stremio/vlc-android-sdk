@@ -10,24 +10,19 @@ env:
 
 script:
   - if [ -z "$ARCHITECTURE" ]; then exit 0; fi
-  - echo $TRAVIS_TAG
-  - echo $TRAVIS_TAG | sed -rn 's/^[^-]*-(.*)$/\1/p'
-  - echo $ARCHITECTURE
-  - echo $ARCHITECTURE$ARCHITECTURE > ./libvlc-$ARCHITECTURE
-  - cat libvlc-$ARCHITECTURE
-  # - docker build -t $DOCKER_CONTAINER_NAME .
-  # - while sleep 1m; do echo "[$SECONDS seconds] building"; done &
-  # - docker run -it $DOCKER_CONTAINER_NAME armeabi-v7a >/dev/null 2>/dev/null
-  # - kill %1
-  # - DOCKER_CONTAINER_ID=`docker ps -a | grep $DOCKER_CONTAINER_NAME | awk 'NR==1{ print $1 }'`
-  # - docker cp $DOCKER_CONTAINER_ID:/home/stremioci/libvlc-source.zip ./libvlc-source.zip
+  - docker build -t $DOCKER_CONTAINER_NAME .
+  - while sleep 1m; do echo "[$SECONDS seconds] building libvlc for $ARCHITECTURE"; done &
+  - docker run -it $DOCKER_CONTAINER_NAME $ARCHITECTURE >/dev/null 2>/dev/null
+  - kill %1
+  - DOCKER_CONTAINER_ID=`docker ps -a | grep $DOCKER_CONTAINER_NAME | awk 'NR==1{ print $1 }'`
+  - docker cp $DOCKER_CONTAINER_ID:/home/stremioci/libvlc-$ARCHITECTURE.zip .
 
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
     secure: pG9OT3xZbjWofniV5Vjtj1gaQ6BZYvzxxdzTr5aZmOFwQgSWmTy9+oi0Q2o90VO27Npfz8lMJFbQbydH3Ah3N0afkH/Qr9w/LW/wxZadTGyrPe9TrMhwqt9OlA1kKBVx1YFyu5b8BaBN2iNAE5D3r2PT/wDrEpWmRQ+PcltbxAhFFaoVaHtVIEFj/dNnF3usOOp7jXuOMByjIpEd2oAqtsi2xYWow2lwwwfs/QlE7wN4Z761qxIpPMgfDivE4iUWzaWtP4tGbbhGA04yZu/jwvxbW0Oc8VEl8nN+XTs2LJELzciWBcbDoQbW7LNVR4FGVC1mopFpzWD950zKV76mjZZk5dF+ltQyrbVBgsjjm5gYnIU5WTx3lJAxXq4KOYfm2pP0jj4phqVqXEuFPhQgdW35jZV+XiB+HZzhzzNgnuIO5cIBUo7zUQqbXHxbaFZAVp5bozSOBAbxcdKSG/68+jeV13AKNswz91924VfF31FBTPPkl2AXJ/8K4getcH8kKxRFLyF+g1afhRthw6KvLXhxzp715ON4NPRgjiKxpcVRcvZY6fLPxx1A9B+jmDob4pwXJghkO+c4FCcq+lKG+M0DwXIqucoxxsCqPrT9XTZHzAwQl2L0nbs89WZP3JWfFCDiEyEZKvAUv+Jh7NVHDHTP8XNc0MqW0kIXlH0nDB0=
-  file: ./libvlc-$ARCHITECTURE
+  file: ./libvlc-$ARCHITECTURE.zip
   on:
     tags: true
     repo: Stremio/vlc-android-sdk
