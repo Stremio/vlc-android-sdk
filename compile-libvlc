@@ -11,16 +11,16 @@ then
 fi
 
 OUTPUT_DIR="$HOME/libvlc"
-RESOURCE_DIR="$OUTPUT_DIR/res"
-SOURCE_DIR="$OUTPUT_DIR/src/main"
-JAVA_DIR="$SOURCE_DIR/java"
-JNILIBS_DIR="$SOURCE_DIR/jniLibs"
+SRC_MAIN_DIR="$OUTPUT_DIR/src/main"
+JNILIBS_DIR="$SRC_MAIN_DIR/jniLibs"
+RES_DIR="$SRC_MAIN_DIR/res"
+JAVA_DIR="$SRC_MAIN_DIR/java"
 
 rm -rf $OUTPUT_DIR
-mkdir -p $RESOURCE_DIR
-mkdir -p $SOURCE_DIR
-mkdir -p $JAVA_DIR
+mkdir -p $SRC_MAIN_DIR
 mkdir -p $JNILIBS_DIR
+mkdir -p $RES_DIR
+mkdir -p $JAVA_DIR
 
 cd $HOME
 git clone "https://code.videolan.org/videolan/vlc-android.git" -b "3.1.6" vlc-android
@@ -35,14 +35,13 @@ for filename in libvlc/build/outputs/aar/*.aar; do
     mv $JNILIBS_DIR/jni/* $JNILIBS_DIR
 done
 rm -rf $JNILIBS_DIR/jni
-
-cp -r libvlc/res/ $RESOURCE_DIR
-mv $RESOURCE_DIR/res/* $RESOURCE_DIR
-rm -rf $RESOURCE_DIR/res
+cp -r libvlc/res/ $RES_DIR
+mv $RES_DIR/res/* $RES_DIR
+rm -rf $RES_DIR/res
 cp -r libvlc/src/ $JAVA_DIR
 mv $JAVA_DIR/src/* $JAVA_DIR
 rm -rf $JAVA_DIR/src
-cp libvlc/AndroidManifest.xml $SOURCE_DIR/AndroidManifest.xml
+cp libvlc/AndroidManifest.xml $SRC_MAIN_DIR/AndroidManifest.xml
 
 cd $HOME
 zip -r libvlc-$ARCHITECTURE.zip libvlc
