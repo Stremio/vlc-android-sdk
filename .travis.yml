@@ -13,7 +13,7 @@ script:
   - echo $TRAVIS_TAG | sed -rn 's/^[^-]*-(.*)$/\1/p'
   - echo $ARCHITECTURE
   - echo $ARCHITECTURE$ARCHITECTURE > ./$ARCHITECTURE
-  - cat $ARCHITECTURE$ARCHITECTURE
+  - cat $ARCHITECTURE
   # - docker build -t $DOCKER_CONTAINER_NAME .
   # - while sleep 1m; do echo "[$SECONDS seconds] building"; done &
   # - docker run -it $DOCKER_CONTAINER_NAME armeabi-v7a >/dev/null 2>/dev/null
