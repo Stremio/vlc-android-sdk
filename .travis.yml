@@ -12,7 +12,7 @@ script:
   - if [ -z "$ARCHITECTURE" ]; then exit 0; fi
   - docker build -t $DOCKER_CONTAINER_NAME .
   - while sleep 1m; do echo "[$SECONDS seconds] building libvlc for $ARCHITECTURE"; done &
-  - docker run -it $DOCKER_CONTAINER_NAME $ARCHITECTURE >/dev/null
+  - docker run -it $DOCKER_CONTAINER_NAME $ARCHITECTURE
   - kill %1
   - DOCKER_CONTAINER_ID=`docker ps -a | grep $DOCKER_CONTAINER_NAME | awk 'NR==1{ print $1 }'`
   - docker cp $DOCKER_CONTAINER_ID:/home/stremioci/libvlc-$ARCHITECTURE.zip .
