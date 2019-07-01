@@ -1,8 +1,12 @@
 #!/bin/bash
 
-cd $HOME
-
 ARCHITECTURE=$1
+ARCHITECTURES=("armeabi-v7a arm64-v8a x86_64 x86")
+if [[ ! "${ARCHITECTURES[@]}" =~ "${ARCHITECTURE}" ]]; then
+    echo "Invalid architecture";
+    exit 1;
+fi
+
 OUTPUT_DIR="$HOME/libvlc"
 SOURCE_DIR="$OUTPUT_DIR/src/main"
 JAVA_DIR="$SOURCE_DIR/java"
@@ -13,6 +17,7 @@ mkdir -p $SOURCE_DIR
 mkdir -p $JAVA_DIR
 mkdir -p $JNILIBS_DIR
 
+cd $HOME
 git clone "https://code.videolan.org/videolan/vlc-android.git" -b "3.1.6" vlc-android
 cd vlc-android
 sh compile.sh --init
