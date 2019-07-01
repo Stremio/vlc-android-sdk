@@ -37,4 +37,4 @@ rm -rf $JAVA_DIR/src
 cp libvlc/AndroidManifest.xml $SOURCE_DIR/AndroidManifest.xml
 
 cd $HOME
-zip -r libvlc-source.zip libvlc
+zip -r libvlc-$ARCHITECTURE.zip libvlc
