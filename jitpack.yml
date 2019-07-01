@@ -1,3 +1,4 @@
 before_install:
+  - VERSION=4.0.0
   - if [[ ! $VERSION =~ ^[0-9\.]*$ ]]; then exit 1; fi
   - ./download-libvlc

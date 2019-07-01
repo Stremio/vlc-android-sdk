@@ -1,5 +1,6 @@
 #!/bin/bash
 
+VERSION=4.0.0
 # arm64-v8a x86_64 x86
 for ARCHITECTURE in armeabi-v7a
 do
