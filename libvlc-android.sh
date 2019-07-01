@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ARCHITECTURE=$1
-ARCHITECTURES=("armeabi-v7a arm64-v8a x86_64 x86")
+ARCHITECTURES="armeabi-v7a arm64-v8a x86_64 x86"
 if [[ ! "${ARCHITECTURES[@]}" =~ "${ARCHITECTURE}" ]]; then
     echo "Invalid architecture";
     exit 1;
