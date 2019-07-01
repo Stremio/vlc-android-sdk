@@ -23,7 +23,7 @@ mkdir -p $RES_DIR
 mkdir -p $JAVA_DIR
 
 cd $HOME
-git clone "https://code.videolan.org/videolan/vlc-android.git" -b "3.1.6" vlc-android
+git clone "https://code.videolan.org/videolan/vlc-android.git" -b "3.0.13" vlc-android
 cd vlc-android
 sh compile.sh --init
 sed -i -e "s/4.10.1/5.4.1/g" gradle/wrapper/gradle-wrapper.properties
