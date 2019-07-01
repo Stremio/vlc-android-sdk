@@ -30,3 +30,8 @@ android {
         versionName "4.0.0"
     }
 }
+
+dependencies {
+    api "androidx.annotation:annotation:1.0.1"
+    api "androidx.legacy:legacy-support-v4:1.0.0"
+}
