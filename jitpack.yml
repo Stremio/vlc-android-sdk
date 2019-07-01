@@ -1,2 +1,6 @@
+env:
+  ARCHITECTURE: `echo $VERSION | sed -rn 's/^[^-]*-(.*)$/\1/p'`
+  PACKAGE_VERSION: `echo $VERSION | sed -rn 's/^([^-]*)-.*$/\1/p'`
+
 before_install:
-  - echo "Version - $VERSION"
+  - echo "ARCH-$ARCHITECTURE || PACKAGE_VERSION-$PACKAGE_VERSION"
