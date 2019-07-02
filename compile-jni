@@ -6,7 +6,7 @@ ARCHITECTURE=$2
 
 if [[ ! "$VLC_ANDROID_VERSION" =~ ^[0-9\.]+$ ]]
 then
-    echo "Invalid vlc android version"
+    echo "Invalid vlc android version: $VLC_ANDROID_VERSION"
     exit 1
 fi
 
@@ -15,43 +15,17 @@ if [[ "$ARCHITECTURE" != "armeabi-v7a" &&
     "$ARCHITECTURE" != "x86_64" && 
     "$ARCHITECTURE" != "x86" ]]
 then
-    echo "Invalid architecture"
+    echo "Invalid architecture: $ARCHITECTURE"
     exit 2
 fi
 
-OUTPUT_DIR="$HOME/libvlc"
-SRC_MAIN_DIR="$OUTPUT_DIR/src/main"
-JNILIBS_DIR="$SRC_MAIN_DIR/jniLibs"
-RES_DIR="$SRC_MAIN_DIR/res"
-JAVA_DIR="$SRC_MAIN_DIR/java"
-
-rm -rf "$OUTPUT_DIR"
-mkdir -p "$SRC_MAIN_DIR"
-mkdir -p "$JNILIBS_DIR"
-mkdir -p "$RES_DIR"
-mkdir -p "$JAVA_DIR"
-
-cd "$HOME"
 git clone "https://code.videolan.org/videolan/vlc-android.git" -b "$VLC_ANDROID_VERSION" vlc-android
 cd vlc-android
 sh compile.sh -a "$ARCHITECTURE" -l --release --no-ml
 
-for filename in libvlc/build/outputs/aar/*.aar
-do
-    unzip "$filename" jni/* -d "$JNILIBS_DIR"
-    mv "$JNILIBS_DIR"/jni/* "$JNILIBS_DIR"
-done
-rm -rf "$JNILIBS_DIR"/jni
-if [ -d libvlc/res/ ]
-then
-    cp -r libvlc/res/ "$RES_DIR"
-    mv "$RES_DIR"/res/* "$RES_DIR"
-    rm -rf "$RES_DIR"/res
-fi
-cp -r libvlc/src/ "$JAVA_DIR"
-mv "$JAVA_DIR"/src/* "$JAVA_DIR"
-rm -rf "$JAVA_DIR"/src
-cp libvlc/AndroidManifest.xml "$SRC_MAIN_DIR"
-
-cd "$HOME"
-zip -r libvlc-"$ARCHITECTURE".zip libvlc
+OUTPUT_DIR="libvlc-jni"
+mkdir -p "$OUTPUT_DIR"
+unzip libvlc/build/outputs/aar/*.aar jni/* -d "$OUTPUT_DIR"
+mv "$OUTPUT_DIR"/jni/* "$OUTPUT_DIR"
+rm -rf "$OUTPUT_DIR"/jni
+zip -r "$HOME"/libvlc-"$ARCHITECTURE"-jni.zip "$OUTPUT_DIR"
