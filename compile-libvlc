@@ -45,9 +45,12 @@ do
     mv "$JNILIBS_DIR"/jni/* "$JNILIBS_DIR"
 done
 rm -rf "$JNILIBS_DIR"/jni
-cp -r libvlc/res/ "$RES_DIR"
-mv "$RES_DIR"/res/* "$RES_DIR"
-rm -rf "$RES_DIR"/res
+if [ -d libvlc/res/ ]
+then
+    cp -r libvlc/res/ "$RES_DIR"
+    mv "$RES_DIR"/res/* "$RES_DIR"
+    rm -rf "$RES_DIR"/res
+fi
 cp -r libvlc/src/ "$JAVA_DIR"
 mv "$JAVA_DIR"/src/* "$JAVA_DIR"
 rm -rf "$JAVA_DIR"/src
