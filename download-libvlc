@@ -1,5 +1,6 @@
 #!/bin/bash
 
+VERSION=4.0.0
 for ARCHITECTURE in armeabi-v7a arm64-v8a x86_64 x86
 do
     wget https://github.com/Stremio/vlc-android-sdk/releases/download/$VERSION-$ARCHITECTURE/libvlc-$ARCHITECTURE.zip
