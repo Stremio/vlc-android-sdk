@@ -1,0 +1,44 @@
+#!/bin/bash
+set -e
+
+VERSION="4.0.1"
+PROJECT_DIR=`pwd`
+ANDROID_NDK="$PROJECT_DIR"/ndk
+ANDROID_NDK_VERSION="r14b"
+ANDROID_NDK_SHA256="0ecc2017802924cf81fffc0f51d342e3e69de6343da892ac9fa1cd79bc106024"
+GRADLE_VERSION="4.1"
+GRADLE_SHA256="d55dfa9cfb5a3da86a1c9e75bb0b9507f9a8c8c100793ccec7beb6e259f9ed43"
+
+echo "ndk.dir=$ANDROID_NDK" > local.properties
+mkdir -p "$ANDROID_NDK"
+cd "$ANDROID_NDK"
+wget https://dl.google.com/android/repository/android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip
+echo "$ANDROID_NDK_SHA256" android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip | sha256sum -c
+unzip android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip
+rm -f android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip
+mv android-ndk-"$ANDROID_NDK_VERSION"/** .
+rm -rf android-ndk-"$ANDROID_NDK_VERSION"
+cd ..
+
+wget https://services.gradle.org/distributions/gradle-"$GRADLE_VERSION"-bin.zip
+echo "$GRADLE_SHA256" gradle-"$GRADLE_VERSION"-bin.zip | sha256sum -c
+unzip gradle-"$GRADLE_VERSION"-bin.zip
+rm -f gradle-"$GRADLE_VERSION"-bin.zip
+cd gradle-"$GRADLE_VERSION"
+./bin/gradle --offline wrapper
+cd ..
+mkdir -p gradle
+mv gradle-"$GRADLE_VERSION"/gradle/wrapper/ gradle
+mv gradle-"$GRADLE_VERSION"/gradlew .
+chmod a+x gradlew
+
+exit
+
+for ARCHITECTURE in armeabi-v7a arm64-v8a x86_64 x86
+do
+    wget https://github.com/Stremio/vlc-android-sdk/releases/download/"$VERSION"-"$ARCHITECTURE"/libvlc-"$ARCHITECTURE".zip
+    unzip libvlc-"$ARCHITECTURE".zip
+    yes | cp -r libvlc/* .
+    rm libvlc-"$ARCHITECTURE".zip
+    rm -rf ./libvlc
+done
