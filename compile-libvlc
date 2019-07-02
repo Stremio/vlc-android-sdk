@@ -34,9 +34,6 @@ mkdir -p "$JAVA_DIR"
 cd "$HOME"
 git clone "https://code.videolan.org/videolan/vlc-android.git" -b "$VLC_ANDROID_VERSION" vlc-android
 cd vlc-android
-sh compile.sh --init
-sed -i -e "s/4.10.1/5.4.1/g" gradle/wrapper/gradle-wrapper.properties
-./gradlew wrapper
 sh compile.sh -a "$ARCHITECTURE" -l --release --no-ml
 
 for filename in libvlc/build/outputs/aar/*.aar
