@@ -43,5 +43,5 @@ RUN mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
     git config --global user.name "$USERNAME" && \
     git config --global user.email "$USERNAME@stremio.com"
 
-COPY compile-libvlc /home/$USERNAME/
-ENTRYPOINT ["/home/stremioci/compile-libvlc"]
+COPY compile-jni /home/$USERNAME/
+ENTRYPOINT ["/home/stremioci/compile-jni"]
