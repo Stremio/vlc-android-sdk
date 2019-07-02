@@ -24,9 +24,8 @@ git clone "https://code.videolan.org/videolan/vlc-android.git" -b "$VLC_ANDROID_
 cd vlc-android
 sh compile.sh -a "$ARCHITECTURE" -l --release --no-ml
 cd "$HOME"
-OUTPUT_DIR="libvlc-jni"
-mkdir -p "$OUTPUT_DIR"
-unzip vlc-android/libvlc/build/outputs/aar/*.aar jni/* -d "$OUTPUT_DIR"
-mv "$OUTPUT_DIR"/jni/* "$OUTPUT_DIR"
-rm -rf "$OUTPUT_DIR"/jni
-zip -r libvlc-"$ARCHITECTURE"-jni.zip "$OUTPUT_DIR"
+mkdir libvlc-jni
+unzip vlc-android/libvlc/build/outputs/aar/*.aar jni/* -d libvlc-jni
+mv libvlc-jni/jni/* libvlc-jni
+rm -rf libvlc-jni/jni
+zip -r libvlc-"$ARCHITECTURE"-jni.zip libvlc-jni
