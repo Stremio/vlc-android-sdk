@@ -1,8 +1,8 @@
 FROM debian:stretch-20190506
 
 ENV USERNAME="stremioci"
-ENV ANDROID_SDK="/home/$USERNAME/android-sdk"
-ENV ANDROID_NDK="/home/$USERNAME/android-ndk"
+ENV ANDROID_SDK=/home/"$USERNAME"/android-sdk
+ENV ANDROID_NDK=/home/"$USERNAME"/android-ndk
 
 RUN apt-get update && \
     apt-get install --no-install-suggests --no-install-recommends -y \
@@ -21,7 +21,7 @@ RUN apt-get update && \
     adduser --quiet --disabled-password -gecos "" --ingroup "$USERNAME" "$USERNAME" && \
     echo "$USERNAME:$USERNAME" | chpasswd
 
-USER $USERNAME
+USER "$USERNAME"
 RUN mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
     mkdir licenses && \
     echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "licenses/android-sdk-license" && \
@@ -43,5 +43,5 @@ RUN mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
     git config --global user.name "$USERNAME" && \
     git config --global user.email "$USERNAME@stremio.com"
 
-COPY compile-jni /home/$USERNAME/
+COPY compile-jni /home/"$USERNAME"/
 ENTRYPOINT ["/home/stremioci/compile-jni"]
