@@ -17,7 +17,6 @@ RUN apt-get update && \
     apt-get update && apt-get -y -t testing --no-install-suggests --no-install-recommends install automake && \
     rm -f /etc/apt/sources.list.d/testing.list && \
     apt-get clean -y && rm -rf /var/lib/apt/lists/* && \
-    localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
     addgroup --quiet $USERNAME && \
     adduser --quiet --disabled-password -gecos "" --ingroup $USERNAME $USERNAME && \
     echo "$USERNAME:$USERNAME" | chpasswd
