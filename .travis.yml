@@ -11,8 +11,8 @@ env:
 
 script:
   - if [ -z "$ARCHITECTURE" ]; then exit 0; fi
-  - docker build -t "$DOCKER_CONTAINER_NAME" .
   - while sleep 1m; do echo "[$SECONDS seconds] building libvlc for $ARCHITECTURE based on vlc-android $VLC_ANDROID_VERSION"; done &
+  - docker build -t "$DOCKER_CONTAINER_NAME" . >/dev/null 2>/dev/null
   - docker run -it "$DOCKER_CONTAINER_NAME" "$VLC_ANDROID_VERSION" "$ARCHITECTURE" >/dev/null 2>/dev/null
   - kill %1
   - DOCKER_CONTAINER_ID=`docker ps -a | grep "$DOCKER_CONTAINER_NAME" | awk 'NR==1{ print $1 }'`
