@@ -1,13 +1,21 @@
 #!/bin/bash
 
-ARCHITECTURE=$1
+VLC_ANDROID_VERSION=$1
+ARCHITECTURE=$2
+
+if [[ ! "$VLC_ANDROID_VERSION" =~ ^[0-9\.]+$ ]]; 
+then
+    echo "Invalid vlc android version";
+    exit 1;
+fi
+
 if [[ "$ARCHITECTURE" != "armeabi-v7a" && 
     "$ARCHITECTURE" != "arm64-v8a" &&
     "$ARCHITECTURE" != "x86_64" && 
     "$ARCHITECTURE" != "x86" ]]; 
 then
     echo "Invalid architecture";
-    exit 1;
+    exit 2;
 fi
 
 OUTPUT_DIR="$HOME/libvlc"
@@ -23,7 +31,7 @@ mkdir -p $RES_DIR
 mkdir -p $JAVA_DIR
 
 cd $HOME
-git clone "https://code.videolan.org/videolan/vlc-android.git" -b "3.0.13" vlc-android
+git clone "https://code.videolan.org/videolan/vlc-android.git" -b $VLC_ANDROID_VERSION vlc-android
 cd vlc-android
 sh compile.sh --init
 sed -i -e "s/4.10.1/5.4.1/g" gradle/wrapper/gradle-wrapper.properties
