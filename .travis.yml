@@ -23,7 +23,7 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: pG9OT3xZbjWofniV5Vjtj1gaQ6BZYvzxxdzTr5aZmOFwQgSWmTy9+oi0Q2o90VO27Npfz8lMJFbQbydH3Ah3N0afkH/Qr9w/LW/wxZadTGyrPe9TrMhwqt9OlA1kKBVx1YFyu5b8BaBN2iNAE5D3r2PT/wDrEpWmRQ+PcltbxAhFFaoVaHtVIEFj/dNnF3usOOp7jXuOMByjIpEd2oAqtsi2xYWow2lwwwfs/QlE7wN4Z761qxIpPMgfDivE4iUWzaWtP4tGbbhGA04yZu/jwvxbW0Oc8VEl8nN+XTs2LJELzciWBcbDoQbW7LNVR4FGVC1mopFpzWD950zKV76mjZZk5dF+ltQyrbVBgsjjm5gYnIU5WTx3lJAxXq4KOYfm2pP0jj4phqVqXEuFPhQgdW35jZV+XiB+HZzhzzNgnuIO5cIBUo7zUQqbXHxbaFZAVp5bozSOBAbxcdKSG/68+jeV13AKNswz91924VfF31FBTPPkl2AXJ/8K4getcH8kKxRFLyF+g1afhRthw6KvLXhxzp715ON4NPRgjiKxpcVRcvZY6fLPxx1A9B+jmDob4pwXJghkO+c4FCcq+lKG+M0DwXIqucoxxsCqPrT9XTZHzAwQl2L0nbs89WZP3JWfFCDiEyEZKvAUv+Jh7NVHDHTP8XNc0MqW0kIXlH0nDB0=
-  file: "./libvlc-$ARCHITECTURE-jni.zip"
+  file: "libvlc-$ARCHITECTURE-jni.zip"
   on:
     tags: true
     repo: Stremio/vlc-android-sdk
