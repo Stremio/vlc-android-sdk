@@ -34,13 +34,13 @@ RUN mkdir -p $ANDROID_SDK && cd $ANDROID_SDK && \
     rm -f sdk-tools-linux-3859397.zip && \
     tools/bin/sdkmanager "build-tools;26.0.1" "platform-tools" "platforms;android-26" && \
     mkdir -p $ANDROID_NDK && cd $ANDROID_NDK && \
-    wget -q https://dl.google.com/android/repository/android-ndk-r18b-linux-x86_64.zip && \
-    ANDROID_NDK_SHA256=4f61cbe4bbf6406aa5ef2ae871def78010eed6271af72de83f8bd0b07a9fd3fd && \
-    echo $ANDROID_NDK_SHA256 android-ndk-r18b-linux-x86_64.zip | sha256sum -c && \
-    unzip android-ndk-r18b-linux-x86_64.zip && \
-    rm -f android-ndk-r18b-linux-x86_64.zip && \
-    mv android-ndk-r18b/** . && \
-    rm -rf android-ndk-r18b && \
+    wget -q https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip && \
+    ANDROID_NDK_SHA256=0ecc2017802924cf81fffc0f51d342e3e69de6343da892ac9fa1cd79bc106024 && \
+    echo $ANDROID_NDK_SHA256 android-ndk-r14b-linux-x86_64.zip | sha256sum -c && \
+    unzip android-ndk-r14b-linux-x86_64.zip && \
+    rm -f android-ndk-r14b-linux-x86_64.zip && \
+    mv android-ndk-r14b/** . && \
+    rm -rf android-ndk-r14b && \
     git config --global user.name $USERNAME && \
     git config --global user.email $USERNAME@stremio.com
 
