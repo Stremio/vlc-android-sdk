@@ -5,3 +5,7 @@ build/
 local.properties
 .DS_Store
 /src
+/ndk
+/gradle
+/gradle-*
+/gradlew
