@@ -1,11 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="4.0.2"
-VLC_ANDROID_VERSION="3.0.13"
-
 PROJECT_DIR=`pwd`
-
 ANDROID_NDK="$HOME"/ndk
 mkdir -p "$ANDROID_NDK"
 cd "$ANDROID_NDK"
