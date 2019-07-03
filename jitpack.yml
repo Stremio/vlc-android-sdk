@@ -1,5 +1,4 @@
 env:
   VLC_ANDROID_VERSION: "3.0.13"
 before_install:
-  - if [[ ! "$VERSION" =~ ^[0-9\.]+$ ]]; then exit 1; fi
-  - ./compile-aar
+  - ./prepare-aar
