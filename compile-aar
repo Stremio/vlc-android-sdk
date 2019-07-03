@@ -39,7 +39,7 @@ do
     wget https://github.com/Stremio/vlc-android-sdk/releases/download/"$VERSION"-"$ARCHITECTURE"/libvlc-"$ARCHITECTURE"-jni.zip
     unzip libvlc-"$ARCHITECTURE"-jni.zip
     rm -f libvlc-"$ARCHITECTURE"-jni.zip
-    yes | cp -r libvlc-jni/* "$JNILIBS_DIR"
+    cp -r libvlc-jni/* "$JNILIBS_DIR"
     rm -rf libvlc-jni
 done
 git clone "https://code.videolan.org/videolan/vlc-android.git" -b "$VLC_ANDROID_VERSION" vlc-android
