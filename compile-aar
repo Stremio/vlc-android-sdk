@@ -3,6 +3,7 @@ set -e
 
 PROJECT_DIR=`pwd`
 ANDROID_NDK="$HOME"/ndk
+rm -rf "$ANDROID_NDK"
 mkdir -p "$ANDROID_NDK"
 cd "$ANDROID_NDK"
 wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip
