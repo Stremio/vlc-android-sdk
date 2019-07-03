@@ -21,6 +21,6 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.stremio:vlc-android-sdk:4.0.2'
+    implementation 'com.github.stremio:vlc-android-sdk:4.0.3'
 }
 ```
