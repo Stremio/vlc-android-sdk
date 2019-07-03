@@ -24,7 +24,7 @@ rm -f gradle-4.1-bin.zip
 cd gradle-4.1
 ./bin/gradle --offline wrapper
 cd "$PROJECT_DIR"
-mkdir -p gradle
+mkdir gradle
 mv gradle-4.1/gradle/wrapper/ gradle
 mv gradle-4.1/gradlew .
 chmod a+x gradlew
