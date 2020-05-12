@@ -33,9 +33,9 @@ RUN mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
     rm -f sdk-tools-linux-3859397.zip && \
     tools/bin/sdkmanager "build-tools;26.0.1" "platform-tools" "platforms;android-26" && \
     mkdir -p "$ANDROID_NDK" && cd "$ANDROID_NDK" && \
-    ANDROID_NDK_VERSION=r14b && \
+    ANDROID_NDK_VERSION=r21 && \
     wget -q https://dl.google.com/android/repository/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
-    ANDROID_NDK_SHA256=0ecc2017802924cf81fffc0f51d342e3e69de6343da892ac9fa1cd79bc106024 && \
+    ANDROID_NDK_SHA256=b65ea2d5c5b68fb603626adcbcea6e4d12c68eb8a73e373bbb9d23c252fc647b && \
     echo "$ANDROID_NDK_SHA256" android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip | sha256sum -c && \
     unzip android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
     rm -f android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
