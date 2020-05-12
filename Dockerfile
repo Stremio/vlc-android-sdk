@@ -1,28 +1,30 @@
-FROM debian:stretch-20190506
+FROM debian:buster-20200224
 
 ENV USERNAME="stremioci"
+ENV OPEN_JDK=/usr/lib/jvm/java-8-openjdk-amd64
 ENV ANDROID_SDK=/home/"$USERNAME"/android-sdk
 ENV ANDROID_NDK=/home/"$USERNAME"/android-ndk
+ENV PATH="$OPEN_JDK"/bin:$PATH
 
 RUN apt-get update && \
     apt-get install --no-install-suggests --no-install-recommends -y \
-    openjdk-8-jdk-headless ca-certificates autoconf m4 automake ant autopoint bison \
+    ca-certificates autoconf m4 automake ant autopoint bison \
     flex build-essential libtool libtool-bin patch pkg-config ragel subversion \
-    git rpm2cpio libwebkitgtk-1.0-0 yasm ragel g++ protobuf-compiler gettext \
-    libgsm1-dev wget expect unzip zip python python3 locales libltdl-dev curl && \
-    echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/stretch-backports.list && \
-    apt-get update && apt-get -y -t stretch-backports install cmake && \
-    rm -f /etc/apt/sources.list.d/stretch-backports.list && \
-    echo "deb http://deb.debian.org/debian testing main" > /etc/apt/sources.list.d/testing.list && \
-    apt-get update && apt-get -y -t testing --no-install-suggests --no-install-recommends install automake && \
-    rm -f /etc/apt/sources.list.d/testing.list && \
+    git rpm2cpio yasm ragel g++ protobuf-compiler gettext \
+    libgsm1-dev wget expect unzip zip python python3 locales libltdl-dev curl cmake automake && \
     apt-get clean -y && rm -rf /var/lib/apt/lists/* && \
     addgroup --quiet "$USERNAME" && \
     adduser --quiet --disabled-password -gecos "" --ingroup "$USERNAME" "$USERNAME" && \
     echo "$USERNAME:$USERNAME" | chpasswd
 
 USER "$USERNAME"
-RUN mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
+RUN mkdir -p "$OPEN_JDK" && cd "$OPEN_JDK" && \
+    wget -q https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz && \
+    JDK_SHA256=c261f5e2776f4430249fcf6276649969a40f28262d1f224390aa764ae84464df && \
+    echo $JDK_SHA256 OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz | sha256sum -c && \
+    tar -xvzf OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz --strip=1 && \
+    rm -f OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz && \
+    mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
     mkdir licenses && \
     echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "licenses/android-sdk-license" && \
     echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "licenses/android-sdk-license" && \
