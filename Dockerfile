@@ -1,7 +1,7 @@
 FROM debian:buster-20200224
 
 ENV USERNAME="stremioci"
-ENV OPEN_JDK=/usr/lib/jvm/java-8-openjdk-amd64
+ENV OPEN_JDK=/home/"$USERNAME"/open-jdk
 ENV ANDROID_SDK=/home/"$USERNAME"/android-sdk
 ENV ANDROID_NDK=/home/"$USERNAME"/android-ndk
 ENV PATH="$OPEN_JDK"/bin:$PATH
