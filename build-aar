@@ -20,19 +20,19 @@ mkdir -p "$ANDROID_NDK"
 cd "$ANDROID_NDK"
 ANDROID_NDK_VERSION=r18b
 ANDROID_NDK_SHA256=4f61cbe4bbf6406aa5ef2ae871def78010eed6271af72de83f8bd0b07a9fd3fd
-wget https://dl.google.com/android/repository/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip
+echo "Download android ndk" && wget -q https://dl.google.com/android/repository/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip
 echo "$ANDROID_NDK_SHA256" android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip | sha256sum -c
-unzip android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip
+echo "Extract android ndk" && unzip -q android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip
 rm -f android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip
 mv android-ndk-$ANDROID_NDK_VERSION/** .
 rm -rf android-ndk-$ANDROID_NDK_VERSION
 cd "$PROJECT_DIR"
 echo "ndk.dir=$ANDROID_NDK" > local.properties
 echo "sdk.dir=$ANDROID_SDK" >> local.properties
-wget https://services.gradle.org/distributions/gradle-4.1-bin.zip
+echo "Download gradle" && wget -q https://services.gradle.org/distributions/gradle-4.1-bin.zip
 GRADLE_SHA256=d55dfa9cfb5a3da86a1c9e75bb0b9507f9a8c8c100793ccec7beb6e259f9ed43
 echo "$GRADLE_SHA256" gradle-4.1-bin.zip | sha256sum -c
-unzip gradle-4.1-bin.zip
+echo "Extract gradle" && unzip -q gradle-4.1-bin.zip
 rm -f gradle-4.1-bin.zip
 cd gradle-4.1
 ./bin/gradle --offline wrapper
