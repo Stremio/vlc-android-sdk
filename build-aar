@@ -14,33 +14,33 @@ then
 fi
 
 PROJECT_DIR=`pwd`
-ANDROID_NDK="$HOME"/ndk
+ANDROID_NDK="$PROJECT_DIR"/ndk
 rm -rf "$ANDROID_NDK"
 mkdir -p "$ANDROID_NDK"
 cd "$ANDROID_NDK"
 ANDROID_NDK_VERSION=r18b
 ANDROID_NDK_SHA256=4f61cbe4bbf6406aa5ef2ae871def78010eed6271af72de83f8bd0b07a9fd3fd
-echo "Download android ndk" && wget -q https://dl.google.com/android/repository/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip
-echo "$ANDROID_NDK_SHA256" android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip | sha256sum -c
-echo "Extract android ndk" && unzip -q android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip
-rm -f android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip
-mv android-ndk-$ANDROID_NDK_VERSION/** .
-rm -rf android-ndk-$ANDROID_NDK_VERSION
+echo "Download android ndk" && wget -q https://dl.google.com/android/repository/android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip
+echo "$ANDROID_NDK_SHA256" android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip | sha256sum -c
+echo "Extract android ndk" && unzip -q android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip
+rm -f android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip
+mv android-ndk-"$ANDROID_NDK_VERSION"/** .
+rm -rf android-ndk-"$ANDROID_NDK_VERSION"
 cd "$PROJECT_DIR"
 echo "ndk.dir=$ANDROID_NDK" > local.properties
 echo "sdk.dir=$ANDROID_SDK" >> local.properties
 GRADLE_VERSION=5.4.1
 GRADLE_SHA256=7bdbad1e4f54f13c8a78abc00c26d44dd8709d4aedb704d913fb1bb78ac025dc
-echo "Download gradle" && wget -q https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip
-echo "$GRADLE_SHA256" gradle-$GRADLE_VERSION-bin.zip | sha256sum -c
-echo "Extract gradle" && unzip -q gradle-$GRADLE_VERSION-bin.zip
-rm -f gradle-$GRADLE_VERSION-bin.zip
-cd gradle-$GRADLE_VERSION
+echo "Download gradle" && wget -q https://services.gradle.org/distributions/gradle-"$GRADLE_VERSION"-bin.zip
+echo "$GRADLE_SHA256" gradle-"$GRADLE_VERSION"-bin.zip | sha256sum -c
+echo "Extract gradle" && unzip -q gradle-"$GRADLE_VERSION"-bin.zip
+rm -f gradle-"$GRADLE_VERSION"-bin.zip
+cd gradle-"$GRADLE_VERSION"
 ./bin/gradle --offline wrapper
 cd "$PROJECT_DIR"
 mkdir gradle
-mv gradle-$GRADLE_VERSION/gradle/wrapper/ gradle
-mv gradle-$GRADLE_VERSION/gradlew .
+mv gradle-"$GRADLE_VERSION"/gradle/wrapper/ gradle
+mv gradle-"$GRADLE_VERSION"/gradlew .
 chmod a+x gradlew
 SRC_MAIN_DIR="src/main"
 JNILIBS_DIR="$SRC_MAIN_DIR"/jniLibs
