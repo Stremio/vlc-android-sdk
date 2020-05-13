@@ -6,6 +6,8 @@
 
 # Setup
 
+## Gradle
+
 ### Add the JitPack repository to your root build.gradle
 
 ```gradle
@@ -24,3 +26,7 @@ dependencies {
     implementation 'com.github.stremio:vlc-android-sdk:5.0.1'
 }
 ```
+
+## Manual
+
+[Download](https://jitpack.io/com/github/stremio/vlc-android-sdk/5.0.1/vlc-android-sdk-5.0.1.aar) aar and link it manually
