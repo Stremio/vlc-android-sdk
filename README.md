@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/Stremio/vlc-android-sdk.svg?branch=master)](https://travis-ci.com/Stremio/vlc-android-sdk)
 
-### libvlc for android based on VLC-Android 3.0.13
+### libvlc for android based on VLC-Android 3.2.12
 
 # Setup
 
