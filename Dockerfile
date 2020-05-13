@@ -22,16 +22,16 @@ RUN mkdir -p "$OPEN_JDK" && cd "$OPEN_JDK" && \
     wget -q https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz && \
     JDK_SHA256=c261f5e2776f4430249fcf6276649969a40f28262d1f224390aa764ae84464df && \
     echo $JDK_SHA256 OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz | sha256sum -c && \
-    tar -xvzf OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz --strip=1 && \
+    tar -xzf OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz --strip=1 && \
     rm -f OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz && \
     mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
     mkdir licenses && \
     echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "licenses/android-sdk-license" && \
     echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "licenses/android-sdk-license" && \
-    wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
+    wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
     SDK_TOOLS_SHA256=444e22ce8ca0f67353bda4b85175ed3731cae3ffa695ca18119cbacef1c1bea0 && \
     echo "$SDK_TOOLS_SHA256" sdk-tools-linux-3859397.zip | sha256sum -c && \
-    unzip sdk-tools-linux-3859397.zip && \
+    unzip -q sdk-tools-linux-3859397.zip && \
     rm -f sdk-tools-linux-3859397.zip && \
     tools/bin/sdkmanager "build-tools;26.0.1" "platform-tools" "platforms;android-26" && \
     mkdir -p "$ANDROID_NDK" && cd "$ANDROID_NDK" && \
@@ -39,7 +39,7 @@ RUN mkdir -p "$OPEN_JDK" && cd "$OPEN_JDK" && \
     wget -q https://dl.google.com/android/repository/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
     ANDROID_NDK_SHA256=4f61cbe4bbf6406aa5ef2ae871def78010eed6271af72de83f8bd0b07a9fd3fd && \
     echo "$ANDROID_NDK_SHA256" android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip | sha256sum -c && \
-    unzip android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
+    unzip -q android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
     rm -f android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
     mv android-ndk-$ANDROID_NDK_VERSION/** . && \
     rm -rf android-ndk-$ANDROID_NDK_VERSION && \
