@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:3.0.1"
+        classpath "com.android.tools.build:gradle:3.5.3"
     }
 }
 
@@ -21,17 +21,17 @@ allprojects {
 apply plugin: "com.android.library"
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 26
+        minSdkVersion 17
+        targetSdkVersion 28
         versionCode 10
         versionName "4.0.3"
     }
 }
 
 dependencies {
-    api "com.android.support:support-annotations:26.1.0"
-    api "com.android.support:support-v4:26.1.0"
+    api "androidx.annotation:annotation:1.1.0"
+    api "androidx.legacy:legacy-support-v4:1.0.0"
 }
