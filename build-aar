@@ -45,9 +45,11 @@ chmod a+x gradlew
 SRC_MAIN_DIR="src/main"
 JNILIBS_DIR="$SRC_MAIN_DIR"/jniLibs
 JAVA_DIR="$SRC_MAIN_DIR"/java
+RES_DIR="$SRC_MAIN_DIR"/res
 mkdir -p "$SRC_MAIN_DIR"
 mkdir -p "$JNILIBS_DIR"
 mkdir -p "$JAVA_DIR"
+mkdir -p "$RES_DIR"
 for ARCHITECTURE in armeabi-v7a arm64-v8a x86_64 x86
 do
     wget https://github.com/Stremio/vlc-android-sdk/releases/download/"$VERSION"-"$ARCHITECTURE"/libvlc-"$ARCHITECTURE"-jni.zip
@@ -61,4 +63,7 @@ cp vlc-android/libvlc/AndroidManifest.xml "$SRC_MAIN_DIR"
 cp -r vlc-android/libvlc/src/ "$JAVA_DIR"
 mv "$JAVA_DIR"/src/* "$JAVA_DIR"
 rm -rf "$JAVA_DIR"/src
+cp -r vlc-android/libvlc/res/ "$RES_DIR"
+mv "$RES_DIR"/res/* "$RES_DIR"
+rm -rf "$RES_DIR"/res
 rm -rf vlc-android
