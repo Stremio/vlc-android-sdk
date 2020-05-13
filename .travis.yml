@@ -10,7 +10,7 @@ env:
   - DOCKER_CONTAINER_NAME="stremio/vlc-android-sdk"
 
 script:
-  - if [ -z "$TRAVIS_TAG" ]; then exit 0; fi
+  - if [ -z "$TRAVIS_TAG" -o -z "$ARCHITECTURE" ]; then exit 0; fi
   - while sleep 1m; do echo "[$SECONDS seconds] building libvlc for $ARCHITECTURE based on vlc-android $VLC_ANDROID_VERSION"; done &
   - docker build -t "$DOCKER_CONTAINER_NAME" . >/dev/null 2>/dev/null
   - docker run -it "$DOCKER_CONTAINER_NAME" "$VLC_ANDROID_VERSION" "$ARCHITECTURE" >/dev/null 2>/dev/null
