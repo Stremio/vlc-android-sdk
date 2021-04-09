@@ -18,8 +18,8 @@ ANDROID_NDK="$PROJECT_DIR"/ndk
 rm -rf "$ANDROID_NDK"
 mkdir -p "$ANDROID_NDK"
 cd "$ANDROID_NDK"
-ANDROID_NDK_VERSION=r18b
-ANDROID_NDK_SHA256=4f61cbe4bbf6406aa5ef2ae871def78010eed6271af72de83f8bd0b07a9fd3fd
+ANDROID_NDK_VERSION=r21
+ANDROID_NDK_SHA256=b65ea2d5c5b68fb603626adcbcea6e4d12c68eb8a73e373bbb9d23c252fc647b
 echo "Download android ndk" && wget -q https://dl.google.com/android/repository/android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip
 echo "$ANDROID_NDK_SHA256" android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip | sha256sum -c
 echo "Extract android ndk" && unzip -q android-ndk-"$ANDROID_NDK_VERSION"-linux-x86_64.zip
@@ -29,9 +29,9 @@ rm -rf android-ndk-"$ANDROID_NDK_VERSION"
 cd "$PROJECT_DIR"
 echo "ndk.dir=$ANDROID_NDK" > local.properties
 echo "sdk.dir=$ANDROID_SDK" >> local.properties
-GRADLE_VERSION=5.4.1
-GRADLE_SHA256=7bdbad1e4f54f13c8a78abc00c26d44dd8709d4aedb704d913fb1bb78ac025dc
-echo "Download gradle" && wget -q https://services.gradle.org/distributions/gradle-"$GRADLE_VERSION"-bin.zip
+GRADLE_VERSION=6.5
+GRADLE_SHA256=23e7d37e9bb4f8dabb8a3ea7fdee9dd0428b9b1a71d298aefd65b11dccea220f
+echo "Download gradle" && wget -q https://download.videolan.org/pub/contrib/gradle/gradle-"$GRADLE_VERSION"-bin.zip
 echo "$GRADLE_SHA256" gradle-"$GRADLE_VERSION"-bin.zip | sha256sum -c
 echo "Extract gradle" && unzip -q gradle-"$GRADLE_VERSION"-bin.zip
 rm -f gradle-"$GRADLE_VERSION"-bin.zip
