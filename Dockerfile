@@ -1,3 +1,5 @@
+# Based on https://code.videolan.org/videolan/docker-images/-/blob/c64798bc010982bdf557dee79e90993cb2158324/vlc-debian-android/Dockerfile
+
 FROM debian:buster-20200224
 
 ENV USERNAME="stremioci"
