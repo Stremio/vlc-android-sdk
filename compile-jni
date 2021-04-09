@@ -22,7 +22,7 @@ fi
 cd "$HOME"
 git clone "https://code.videolan.org/videolan/vlc-android.git" -b "$VLC_ANDROID_VERSION" vlc-android
 cd vlc-android
-sh compile.sh -a "$ARCHITECTURE" -l --release --no-ml
+sh buildsystem/compile.sh -a "$ARCHITECTURE" -l --release --no-ml
 cd "$HOME"
 mkdir libvlc-jni
 unzip vlc-android/libvlc/build/outputs/aar/*.aar jni/* -d libvlc-jni
