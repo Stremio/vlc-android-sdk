@@ -4,8 +4,7 @@ ENV USERNAME="stremioci"
 ENV OPEN_JDK=/home/"$USERNAME"/open-jdk
 ENV ANDROID_SDK=/home/"$USERNAME"/android-sdk
 ENV ANDROID_NDK=/home/"$USERNAME"/android-ndk
-ENV CMAKE=/home/"$USERNAME"/cmake
-ENV PATH="$OPEN_JDK"/bin:"$ANDROID_NDK"/toolchains/llvm/prebuilt/linux-x86_64/bin:"$CMAKE"/bin:$PATH
+ENV PATH="$OPEN_JDK"/bin:"$ANDROID_NDK"/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
 
 RUN apt-get update && \
     apt-get install --no-install-suggests --no-install-recommends -y \
