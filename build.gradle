@@ -6,7 +6,10 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:3.5.3"
+        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
     }
 }
 
@@ -21,13 +24,12 @@ allprojects {
 apply plugin: "com.android.library"
 
 android {
-    compileSdkVersion 28
-
     defaultConfig {
+        compileSdkVersion 29
+        targetSdkVersion 29
         minSdkVersion 17
-        targetSdkVersion 28
-        versionCode 12
-        versionName "5.0.1"
+        versionCode 13
+        versionName "6.0.0"
     }
 }
 
