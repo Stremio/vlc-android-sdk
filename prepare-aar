@@ -41,6 +41,7 @@ cd "$PROJECT_DIR"
 mkdir gradle
 mv gradle-"$GRADLE_VERSION"/gradle/wrapper/ gradle
 mv gradle-"$GRADLE_VERSION"/gradlew .
+rm -rf gradle-"$GRADLE_VERSION"
 chmod a+x gradlew
 SRC_MAIN_DIR="src/main"
 JNILIBS_DIR="$SRC_MAIN_DIR"/jniLibs
