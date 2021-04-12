@@ -29,6 +29,7 @@ rm -rf android-ndk-"$ANDROID_NDK_VERSION"
 cd "$PROJECT_DIR"
 echo "ndk.dir=$ANDROID_NDK" > local.properties
 echo "sdk.dir=$ANDROID_SDK" >> local.properties
+echo "android.useAndroidX=true" >> gradle.properties
 GRADLE_VERSION=6.5
 GRADLE_SHA256=23e7d37e9bb4f8dabb8a3ea7fdee9dd0428b9b1a71d298aefd65b11dccea220f
 echo "Download gradle" && wget -q https://download.videolan.org/pub/contrib/gradle/gradle-"$GRADLE_VERSION"-bin.zip
