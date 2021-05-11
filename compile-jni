@@ -4,9 +4,9 @@ set -e
 VLC_ANDROID_VERSION=$1
 ARCHITECTURE=$2
 
-if [[ ! "$VLC_ANDROID_VERSION" =~ ^[0-9\.]+$ ]]
+if [[ -z "$VLC_ANDROID_VERSION" ]]
 then
-    echo "Invalid vlc android version: $VLC_ANDROID_VERSION"
+    echo "Invalid vlc android version"
     exit 1
 fi
 
