@@ -60,7 +60,7 @@ do
     cp -r libvlc-jni/* "$JNILIBS_DIR"
     rm -rf libvlc-jni
 done
-git clone "https://code.videolan.org/videolan/vlc-android.git" -b "$VLC_ANDROID_VERSION" vlc-android
+git clone "https://github.com/Stremio/vlc-android.git" -b "$VLC_ANDROID_VERSION" vlc-android
 cp vlc-android/libvlc/AndroidManifest.xml "$SRC_MAIN_DIR"
 cp -r vlc-android/libvlc/src/ "$JAVA_DIR"
 mv "$JAVA_DIR"/src/* "$JAVA_DIR"
