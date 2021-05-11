@@ -1,4 +1,4 @@
 env:
-  VLC_ANDROID_VERSION: "3.3.4"
+  VLC_ANDROID_VERSION: "3.3.4-custom-chromecast"
 before_install:
   - ./compile-aar
