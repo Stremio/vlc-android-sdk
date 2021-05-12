@@ -23,10 +23,10 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.stremio:vlc-android-sdk:6.0.1'
+    implementation 'com.github.stremio:vlc-android-sdk:7.0.0'
 }
 ```
 
 ## Manual
 
-[Download](https://jitpack.io/com/github/stremio/vlc-android-sdk/6.0.1/vlc-android-sdk-6.0.1.aar) aar and link it manually
+[Download](https://jitpack.io/com/github/stremio/vlc-android-sdk/7.0.0/vlc-android-sdk-7.0.0.aar) aar and link it manually
