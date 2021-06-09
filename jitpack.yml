@@ -1,4 +1,4 @@
 env:
-  VLC_ANDROID_VERSION: "3.3.4-stremio-cast-app-id"
+  VLC_ANDROID_VERSION: "3.3.4-stremio-cast-app-id-beta"
 before_install:
   - ./compile-aar
