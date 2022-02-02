@@ -21,22 +21,22 @@ RUN apt-get update && \
 
 USER "$USERNAME"
 RUN mkdir -p "$OPEN_JDK" && cd "$OPEN_JDK" && \
-    echo "Download openjdk" && wget -q https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz && \
-    JDK_SHA256=c261f5e2776f4430249fcf6276649969a40f28262d1f224390aa764ae84464df && \
-    echo $JDK_SHA256 OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz | sha256sum -c && \
-    echo "Extract openjdk" && tar -xzf OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz --strip=1 && \
-    rm -f OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz && \
+    echo "Download openjdk" && wget -q https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.12%2B7/OpenJDK11U-jdk_x64_linux_11.0.12_7.tar.gz && \
+    JDK_SHA256=06c04b1eccd61dec3849e88f7606d17192c9a713a433ba26f82fe5fe9587d6bb && \
+    echo $JDK_SHA256 OpenJDK11U-jdk_x64_linux_11.0.12_7.tar.gz | sha256sum -c && \
+    echo "Extract openjdk" && tar -xzf OpenJDK11U-jdk_x64_linux_11.0.12_7.tar.gz --strip=1 && \
+    rm -f OpenJDK11U-jdk_x64_linux_11.0.12_7.tar.gz && \
     mkdir -p "$ANDROID_SDK" && cd "$ANDROID_SDK" && \
     mkdir licenses && \
     echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "licenses/android-sdk-license" && \
     echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "licenses/android-sdk-license" && \
     echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "licenses/android-sdk-license" && \
-    echo "Download android sdk" && wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
-    SDK_TOOLS_SHA256=444e22ce8ca0f67353bda4b85175ed3731cae3ffa695ca18119cbacef1c1bea0 && \
-    echo "$SDK_TOOLS_SHA256" sdk-tools-linux-3859397.zip | sha256sum -c && \
-    echo "Extract android sdk" && unzip -q sdk-tools-linux-3859397.zip && \
-    rm -f sdk-tools-linux-3859397.zip && \
-    tools/bin/sdkmanager "build-tools;26.0.1" "platform-tools" "platforms;android-26" && \
+    echo "Download android sdk" && wget -q https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip && \
+    SDK_TOOLS_SHA256=124f2d5115eee365df6cf3228ffbca6fc3911d16f8025bebd5b1c6e2fcfa7faf && \
+    echo "$SDK_TOOLS_SHA256" commandlinetools-linux-7583922_latest.zip | sha256sum -c && \
+    echo "Extract android sdk" && unzip -q commandlinetools-linux-7583922_latest.zip && \
+    rm -f commandlinetools-linux-7583922_latest.zip && \
+    cmdline-tools/bin/sdkmanager --verbose --sdk_root="$ANDROID_SDK" "build-tools;26.0.1" "platform-tools" "platforms;android-26" && \
     mkdir -p "$ANDROID_NDK" && cd "$ANDROID_NDK" && \
     ANDROID_NDK_VERSION=r21 && \
     echo "Download android ndk" && wget -q https://dl.google.com/android/repository/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
@@ -46,6 +46,7 @@ RUN mkdir -p "$OPEN_JDK" && cd "$OPEN_JDK" && \
     rm -f android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip && \
     mv android-ndk-$ANDROID_NDK_VERSION/** . && \
     rm -rf android-ndk-$ANDROID_NDK_VERSION && \
+    git config --global http.sslVerify false && \
     git config --global user.name "$USERNAME" && \
     git config --global user.email "$USERNAME@stremio.com"
 

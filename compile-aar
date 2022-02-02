@@ -31,18 +31,13 @@ echo "ndk.dir=$ANDROID_NDK" > local.properties
 echo "sdk.dir=$ANDROID_SDK" >> local.properties
 echo "android.enableJetifier=false" >> gradle.properties
 echo "android.useAndroidX=true" >> gradle.properties
-GRADLE_VERSION=6.5
-GRADLE_SHA256=23e7d37e9bb4f8dabb8a3ea7fdee9dd0428b9b1a71d298aefd65b11dccea220f
+GRADLE_VERSION=7.0.2
+GRADLE_SHA256=0e46229820205440b48a5501122002842b82886e76af35f0f3a069243dca4b3c
 echo "Download gradle" && wget -q https://download.videolan.org/pub/contrib/gradle/gradle-"$GRADLE_VERSION"-bin.zip
 echo "$GRADLE_SHA256" gradle-"$GRADLE_VERSION"-bin.zip | sha256sum -c
 echo "Extract gradle" && unzip -q gradle-"$GRADLE_VERSION"-bin.zip
 rm -f gradle-"$GRADLE_VERSION"-bin.zip
-cd gradle-"$GRADLE_VERSION"
-./bin/gradle --offline wrapper
-cd "$PROJECT_DIR"
-mkdir gradle
-mv gradle-"$GRADLE_VERSION"/gradle/wrapper/ gradle
-mv gradle-"$GRADLE_VERSION"/gradlew .
+./gradle-"$GRADLE_VERSION"/bin/gradle wrapper
 chmod a+x gradlew
 SRC_MAIN_DIR="src/main"
 JNILIBS_DIR="$SRC_MAIN_DIR"/jniLibs
